@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Consenso del genitore — Skillherz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#3B5BDB; --purple:#7B3FC4; --pink:#E040A0;
+    --grad:linear-gradient(135deg,#3B5BDB 0%,#7B3FC4 50%,#E040A0 100%);
+    --page-bg:#F8F7FF; --text:#1a1a2e; --text-muted:#6B7280; --border:#E5E7EB; --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--page-bg);color:var(--text);
+    line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;}
+  header{padding:24px;display:flex;justify-content:center;}
+  header img{height:44px;width:auto;display:block;}
+  main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:12px 20px 60px;}
+  .card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);max-width:540px;width:100%;
+    overflow:hidden;box-shadow:0 12px 48px rgba(59,91,219,.10);}
+  .card-top{height:6px;background:var(--grad);}
+  .card-body{padding:40px 36px;}
+  .label{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;}
+  h1{font-size:26px;line-height:1.2;font-weight:800;margin-bottom:14px;}
+  p{color:var(--text-muted);font-size:15px;margin-bottom:14px;}
+  .btn{display:flex;width:100%;align-items:center;justify-content:center;gap:10px;padding:17px 28px;border:0;border-radius:12px;
+    background:var(--grad);color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;margin-top:22px;}
+  .btn[disabled]{opacity:.6;cursor:wait;}
+  .btn.secondario{background:#fff;color:var(--text);border:1.5px solid var(--border);}
+  .link{display:block;text-align:center;margin-top:16px;font-size:14px;color:var(--purple);background:none;border:0;
+    font-family:inherit;cursor:pointer;text-decoration:underline;}
+  .esito{text-align:center;}
+  .ico{width:60px;height:60px;border-radius:50%;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .ico.neutro{background:#EEF0F4;}
+  .errore{background:rgba(224,64,160,.08);border:1.5px solid rgba(224,64,160,.35);color:#9d174d;padding:12px 14px;border-radius:12px;font-size:14px;margin-top:18px;}
+  footer{text-align:center;font-size:12px;color:var(--text-muted);padding:24px;}
+  footer a{color:var(--text-muted);}
+  [hidden]{display:none!important;}
+</style>
+</head>
+<body>
+<header><img src="skillherz-logo-dark.png" alt="Skillherz"></header>
+
+<main>
+  <div class="card">
+    <div class="card-top"></div>
+    <div class="card-body">
+
+      <!-- conferma -->
+      <section id="vista-conferma" hidden>
+        <span class="label">Consenso del genitore</span>
+        <h1>Confermate il consenso?</h1>
+        <p>Vostro figlio o vostra figlia ha chiesto di essere ricontattato/a da Skillherz e ha meno di 14 anni. Per legge ci serve il vostro consenso prima di usare i suoi dati.</p>
+        <p>Confermando, autorizzate Skillherz a trattare i dati inseriti per ricontattarvi, come descritto nella <a href="https://drive.google.com/file/d/1ddiqTdhsasQHSFa_Yf_Ip6Yz_eoWQHNr/view" target="_blank" rel="noopener">privacy policy</a>.</p>
+        <button class="btn" data-scelta="conferma">Confermo il consenso</button>
+        <button class="link" data-vai="rifiuta">Non ho autorizzato questa richiesta</button>
+      </section>
+
+      <!-- rifiuto -->
+      <section id="vista-rifiuta" hidden>
+        <span class="label">Annulla la richiesta</span>
+        <h1>Cancelliamo i dati?</h1>
+        <p>Se non riconoscete questa richiesta, cancelliamo subito i dati inseriti e non contatteremo nessuno.</p>
+        <button class="btn" data-scelta="rifiuta">Sì, cancellate i dati</button>
+        <button class="link" data-vai="conferma">No, voglio confermare il consenso</button>
+      </section>
+
+      <!-- link senza token -->
+      <section id="vista-invalido" class="esito" hidden>
+        <div class="ico neutro"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <h1>Link incompleto</h1>
+        <p>Aprite il link direttamente dall'email che vi abbiamo inviato, senza modificarlo.</p>
+      </section>
+
+      <!-- esito dal server -->
+      <section id="vista-esito" class="esito" hidden>
+        <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h1 id="esito-titolo"></h1>
+        <p id="esito-testo"></p>
+      </section>
+
+      <div class="errore" id="errore" role="alert" hidden></div>
+    </div>
+  </div>
+</main>
+
+<footer>Skillherz · by Edoomark Srl SB</footer>
+
+<script>
+/* ============================================================
+   Consenso del genitore per i minori di 14 anni (LP-studenti).
+   Il consenso si registra SOLO al clic sul pulsante, mai all'apertura
+   della pagina: i programmi di posta aprono da soli i link per
+   controllarli, e un consenso preso cosi' non sarebbe stato dato da nessuno.
+   ENDPOINT: lo stesso URL /exec usato dai form delle landing.
+   ============================================================ */
+(function () {
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbym7qTKVoAFjf6PZ38kZm0zhERBM_L9GYnBl1MWKEq_E77llbb2uXzuylr_Oh173ErK/exec';
+  var q = new URLSearchParams(location.search);
+  var token = q.get('t') || '';
+  var vista = q.get('s') === 'rifiuta' ? 'rifiuta' : 'conferma';
+
+  function mostra(id) {
+    ['vista-conferma', 'vista-rifiuta', 'vista-invalido', 'vista-esito'].forEach(function (v) {
+      document.getElementById(v).hidden = v !== id;
+    });
+    document.getElementById('errore').hidden = true;
+  }
+  function errore(testo) {
+    var e = document.getElementById('errore');
+    e.textContent = testo;
+    e.hidden = false;
+  }
+
+  if (!/^[0-9a-f-]{36}$/i.test(token)) { mostra('vista-invalido'); return; }
+  mostra('vista-' + vista);
+
+  document.querySelectorAll('[data-vai]').forEach(function (b) {
+    b.addEventListener('click', function () { mostra('vista-' + b.getAttribute('data-vai')); });
+  });
+
+  document.querySelectorAll('[data-scelta]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (!ENDPOINT) { errore('Il servizio non è ancora attivo. Riprovate tra poco.'); return; }
+      var etichetta = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Un attimo…';
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type': 'text/plain;charset=utf-8'},
+        body: JSON.stringify({azione: 'consenso', token: token, scelta: btn.getAttribute('data-scelta')})
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (r) {
+          if (!r || !r.ok) throw new Error((r && r.error) || '');
+          document.getElementById('esito-titolo').textContent = r.titolo || 'Fatto';
+          document.getElementById('esito-testo').textContent = r.messaggio || '';
+          mostra('vista-esito');
+        })
+        .catch(function (err) {
+          btn.disabled = false;
+          btn.textContent = etichetta;
+          errore((err && err.message) || 'Non siamo riusciti a registrare la risposta. Riprovate tra poco.');
+        });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orientarsi si allena — Skillherz</title>
+<meta name="description" content="Landing page percorso di orientamento Skillherz per genitori.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#3B5BDB; --purple:#7B3FC4; --pink:#E040A0;
+  --grad:linear-gradient(135deg,#3B5BDB 0%,#7B3FC4 50%,#E040A0 100%);
+  --grad-soft:linear-gradient(135deg,rgba(59,91,219,0.08) 0%,rgba(123,63,196,0.08) 50%,rgba(224,64,160,0.08) 100%);
+  --page-bg:#F8F7FF;
+  --text:#1a1a2e; --text-muted:#6B7280; --text-light:#9CA3AF;
+  --border:#E5E7EB; --border-active:#7B3FC4;
+  --card-bg:#ffffff;
+  --radius:16px; --radius-sm:10px;
+  --shadow:0 4px 24px rgba(59,91,219,0.08);
+  --shadow-lg:0 12px 48px rgba(59,91,219,0.15);
+  --green:#10B981;
+  --green-soft:rgba(16,185,129,0.12);
+  --max:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  background:var(--page-bg);color:var(--text);
+  line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.metodo-firma,.visita-hook{text-wrap:balance;}
+p{text-wrap:pretty;}
+
+.oneline{
+  white-space:nowrap;
+  font-size:clamp(12px, 1.25vw, 17px) !important;
+}
+@media(max-width:1000px){
+  .oneline{white-space:normal;font-size:18px !important;}
+}
+
+.container{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+.grad-text{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.section-label{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:20px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 32px;border-radius:12px;
+  background:var(--grad);color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 8px 24px rgba(123,63,196,0.25);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(123,63,196,0.35);}
+.btn-arrow{font-size:18px;transition:transform 0.2s;}
+.btn:hover .btn-arrow{transform:translateX(4px);}
+.micro{font-size:13px;color:var(--text-muted);margin-top:14px;}
+
+/* NAV */
+.topnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(248,247,255,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topnav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:32px;}
+.logo{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.logo img{height:52px;width:auto;display:block;}
+.nav-links{display:flex;gap:28px;align-items:center;flex:1;justify-content:center;}
+.nav-links a{
+  font-size:14px;font-weight:600;color:var(--text-muted);
+  text-decoration:none;transition:color 0.2s;position:relative;
+}
+.nav-links a:hover{color:var(--purple);}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-6px;left:0;right:0;height:2px;
+  background:var(--grad);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.25s;border-radius:2px;
+}
+.nav-links a:hover::after{transform:scaleX(1);}
+.topnav .btn{padding:10px 20px;font-size:13px;box-shadow:none;flex-shrink:0;}
+@media(max-width:900px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{padding:clamp(60px,10vh,120px) 0 clamp(80px,12vh,140px);position:relative;overflow:hidden;}
+.hero::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:var(--grad);opacity:0.08;filter:blur(80px);pointer-events:none;z-index:0;
+}
+.hero .container{position:relative;z-index:1;}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1.4fr;
+  gap:clamp(32px,5vw,72px);align-items:center;
+}
+.hero h1{
+  font-size:clamp(40px,5.4vw,76px);
+  font-weight:800;line-height:0.98;letter-spacing:-2.5px;
+  margin-bottom:28px;
+}
+.hero-sub{
+  font-size:clamp(17px,1.5vw,20px);
+  color:var(--text-muted);
+  line-height:1.5;margin-bottom:14px;
+}
+.hero-sub + .hero-sub{margin-bottom:36px;}
+.hero-media{
+  position:relative;
+  width:100%;max-width:720px;
+  aspect-ratio:4/5;
+  margin:0 auto;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(59,91,219,0.15);
+}
+.hero-media img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:56px;}
+  .hero-media{max-width:640px;}
+}
+
+/* SECTIONS */
+.section{padding:clamp(60px,10vh,120px) 0;}
+.section-header{max-width:900px;margin-bottom:56px;}
+.section-header h2{
+  font-size:clamp(32px,4.5vw,54px);
+  font-weight:800;line-height:1.05;letter-spacing:-1.5px;
+  margin-bottom:24px;max-width:820px;
+}
+.section-header p{font-size:18px;color:var(--text-muted);line-height:1.55;max-width:780px;}
+.section-header p + p{margin-top:14px;}
+
+/* PROBLEMA - Sezione 2 */
+.problema-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;
+  margin-top:24px;
+}
+.problema-col h3{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-muted);
+  padding-bottom:16px;
+  border-bottom:1.5px solid var(--border);
+  margin-bottom:24px;
+}
+.problema-col.dopo h3{
+  color:var(--purple);
+  border-bottom-color:rgba(123,63,196,0.25);
+}
+.problema-list{
+  display:flex;flex-direction:column;gap:20px;
+}
+.problema-item{
+  font-size:16px;line-height:1.55;color:var(--text);
+  padding-left:20px;
+  position:relative;
+}
+.problema-item::before{
+  content:'';position:absolute;left:0;top:9px;
+  width:8px;height:2px;background:var(--text-light);
+}
+.problema-col.dopo .problema-item::before{
+  background:var(--grad);height:2px;
+}
+.problema-quote{
+  margin-top:56px;
+  padding:32px 40px;
+  background:var(--grad-soft);
+  border-left:4px solid var(--purple);
+  border-radius:var(--radius-sm);
+  font-size:clamp(18px,2vw,22px);
+  line-height:1.4;font-weight:600;
+  font-style:italic;
+  color:var(--text);
+  text-wrap:balance;
+}
+
+/* METODO - Sezione 3 */
+.metodo-section{
+  background:var(--grad);color:#fff;
+  padding:clamp(80px,12vh,140px) 0;
+  position:relative;overflow:hidden;
+}
+.metodo-section::before,.metodo-section::after{
+  content:'';position:absolute;border-radius:50%;
+  background:rgba(255,255,255,0.06);filter:blur(60px);pointer-events:none;
+}
+.metodo-section::before{top:-100px;left:-100px;width:400px;height:400px;}
+.metodo-section::after{bottom:-150px;right:-150px;width:500px;height:500px;}
+.metodo-section .container{position:relative;z-index:2;}
+.metodo-section .section-label{color:rgba(255,255,255,0.6);}
+.metodo-section h2{
+  font-size:clamp(30px,4vw,52px);
+  font-weight:800;line-height:1.05;letter-spacing:-1.2px;
+  margin-bottom:32px;color:#fff;
+  text-wrap:balance;
+}
+.metodo-grid{
+  display:grid;grid-template-columns:1fr 1.15fr;
+  gap:clamp(40px,5vw,80px);align-items:center;
+}
+.metodo-gallery{
+  position:relative;
+  border-radius:var(--radius);
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:rgba(0,0,0,0.25);
+  box-shadow:0 24px 60px rgba(0,0,0,0.35);
+}
+.metodo-gallery-slide{
+  position:absolute;inset:0;
+  opacity:0;transition:opacity 0.5s ease;
+  pointer-events:none;
+}
+.metodo-gallery-slide.is-active{opacity:1;pointer-events:auto;}
+.metodo-gallery-slide img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  object-position:center;
+}
+.metodo-gallery-slide img[src="metodo-concentrazione.jpg"]{
+  object-position:65% 40%;
+}
+.metodo-gallery-slide img[src="metodo-video.jpg"]{
+  object-position:55% 35%;
+}
+.metodo-gallery-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(10px);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text);
+  box-shadow:0 4px 16px rgba(0,0,0,0.25);
+  transition:all 0.2s;
+  z-index:3;
+}
+.metodo-gallery-nav:hover{
+  background:#fff;transform:translateY(-50%) scale(1.08);
+}
+.metodo-gallery-nav svg{width:18px;height:18px;}
+.metodo-gallery-prev{left:14px;}
+.metodo-gallery-next{right:14px;}
+.metodo-gallery-dots{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:3;
+}
+.metodo-gallery-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.5);
+  border:none;cursor:pointer;padding:0;
+  transition:all 0.25s;
+}
+.metodo-gallery-dot.is-active{
+  background:#fff;width:24px;border-radius:100px;
+}
+.metodo-body p{
+  font-size:17px;line-height:1.6;
+  color:rgba(255,255,255,0.9);
+}
+.metodo-body p + p{margin-top:18px;}
+.metodo-body strong{color:#fff;font-weight:800;}
+@media(max-width:1000px){
+  .metodo-grid{grid-template-columns:1fr;gap:48px;}
+  .metodo-gallery{max-width:520px;margin:0 auto;aspect-ratio:4/3;}
+}
+.metodo-firma{
+  margin-top:64px;padding-top:48px;
+  border-top:1px solid rgba(255,255,255,0.2);
+  font-size:clamp(28px,3.5vw,44px);
+  font-weight:800;letter-spacing:-1px;
+  max-width:820px;line-height:1.2;
+  color:#fff;
+}
+.metodo-firma em{font-style:normal;color:rgba(255,255,255,0.55);}
+
+/* PERCORSO - Sezione 4 */
+.tappe-schema{
+  padding:clamp(40px,6vh,60px) 0 clamp(40px,6vh,60px);
+}
+.tappe-track{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:0;position:relative;
+}
+.tappa-line{
+  position:absolute;
+  top:38px;
+  left:calc(100%/10);
+  right:calc(100%/10);
+  height:1.5px;
+  background:var(--grad);
+  z-index:0;
+  border-radius:2px;
+}
+.tappa{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  z-index:1;
+  padding:0 12px;
+}
+.tappa-node{
+  width:16px;height:16px;border-radius:50%;
+  background:var(--grad);
+  box-shadow:0 0 0 6px var(--page-bg), 0 0 0 8px rgba(123,63,196,0.15);
+  margin-bottom:28px;
+}
+.tappa-num{
+  font-size:12px;font-weight:800;letter-spacing:2px;
+  color:var(--text-light);text-transform:uppercase;
+  margin-bottom:14px;
+}
+.tappa-nome{
+  font-size:clamp(20px,2.2vw,24px);
+  font-weight:800;letter-spacing:-0.5px;line-height:1.15;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:8px;
+  min-height:2.3em;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+.tappa-hours{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  color:var(--purple);text-transform:uppercase;
+  margin-bottom:16px;
+}
+.tappa-senso{
+  font-size:13.5px;line-height:1.5;color:var(--text-muted);
+}
+
+.percorso-callouts{
+  display:grid;grid-template-columns:1fr;gap:24px;
+  margin-top:64px;
+  max-width:640px;margin-left:auto;margin-right:auto;
+}
+.percorso-callout{
+  background:var(--card-bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px 32px;
+  transition:all 0.2s;
+}
+.percorso-callout:hover{border-color:var(--border-active);box-shadow:var(--shadow-lg);}
+.percorso-callout-tag{
+  display:inline-block;
+  font-size:11px;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--purple);
+  padding:5px 12px;border-radius:6px;
+  background:rgba(123,63,196,0.1);
+  margin-bottom:14px;
+}
+.percorso-callout h4{
+  font-size:20px;font-weight:800;letter-spacing:-0.3px;
+  margin-bottom:10px;
+}
+.percorso-callout p{font-size:14.5px;line-height:1.55;color:var(--text-muted);}
+
+/* ATTIVAZIONE - Nuova Sezione */
+.attivazione-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+.attivazione-card{
+  background:var(--card-bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:36px 32px;
+  display:flex;flex-direction:column;
+  transition:all 0.25s;
+  position:relative;overflow:hidden;
+}
+.attivazione-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--grad);opacity:0.4;transition:opacity 0.25s;
+}
+.attivazione-card:hover{
+  border-color:var(--border-active);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+}
+.attivazione-card:hover::before{opacity:1;}
+.attivazione-tags{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:20px;
+}
+.attivazione-tag{
+  font-size:10px;font-weight:700;letter-spacing:0.5px;
+  text-transform:uppercase;
+  padding:5px 10px;
+  border-radius:6px;
+  color:var(--purple);
+  background:rgba(123,63,196,0.1);
+  white-space:nowrap;
+}
+.attivazione-tag.tag-free{
+  background:var(--green-soft);
+  color:var(--green);
+  border:1px solid rgba(16,185,129,0.25);
+}
+.attivazione-tag.tag-private{
+  background:rgba(224,64,160,0.1);
+  color:var(--pink);
+  border:1px solid rgba(224,64,160,0.25);
+}
+.attivazione-num{
+  font-size:14px;font-weight:800;letter-spacing:2px;
+  color:var(--text-light);text-transform:uppercase;
+  margin-bottom:8px;
+}
+.attivazione-title{
+  font-size:clamp(22px,2.4vw,28px);
+  font-weight:800;letter-spacing:-0.8px;line-height:1.15;
+  margin-bottom:6px;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.attivazione-headline{
+  font-size:17px;font-weight:700;
+  color:var(--text);margin-bottom:16px;
+  line-height:1.3;
+}
+.attivazione-desc{
+  font-size:14.5px;line-height:1.6;color:var(--text-muted);
+  margin-bottom:14px;
+}
+.attivazione-desc:last-of-type{margin-bottom:0;flex-grow:1;}
+
+/* VISITA - Sezione 5 */
+.visita-section{background:var(--card-bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.visita-section .visita-intro{
+  max-width:none;
+  font-size:clamp(15px,1.35vw,17px);
+}
+@media(min-width:1100px){
+  .visita-section .visita-intro{white-space:nowrap;}
+}
+.section-header .problema-intro{max-width:none;}
+.visita-grid{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:clamp(40px,5vw,72px);align-items:center;
+  margin-bottom:24px;
+}
+.visita-media{
+  position:relative;border-radius:var(--radius);
+  overflow:hidden;
+  aspect-ratio:4/5;
+  box-shadow:var(--shadow-lg);
+}
+.visita-media img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.visita-media::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(26,26,46,0) 60%,rgba(26,26,46,0.35) 100%);
+  pointer-events:none;
+}
+.visita-hook{
+  font-size:clamp(36px,5vw,64px);
+  font-weight:800;letter-spacing:-2px;line-height:1;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin:0 0 32px;
+}
+.visita-body p{
+  font-size:17px;line-height:1.6;
+  color:var(--text);
+}
+.visita-body p + p{margin-top:18px;}
+.visita-key{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  margin-top:56px;
+}
+.visita-key-item{
+  padding:24px 28px;
+  background:var(--grad-soft);
+  border-radius:var(--radius);
+  border-top:3px solid var(--purple);
+}
+.visita-key-item h4{
+  font-size:16px;font-weight:800;letter-spacing:-0.2px;
+  margin-bottom:10px;color:var(--text);
+}
+.visita-key-item p{
+  font-size:14px;line-height:1.55;color:var(--text-muted);
+}
+.visita-outlink{
+  margin-top:56px;padding:20px 24px;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+  font-size:14.5px;color:var(--text-muted);
+}
+.visita-outlink a{
+  color:var(--purple);text-decoration:none;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:gap 0.2s;
+}
+.visita-outlink a:hover{gap:10px;}
+@media(max-width:1000px){
+  .visita-grid{grid-template-columns:1fr;gap:40px;}
+  .visita-media{max-width:520px;margin:0 auto;aspect-ratio:4/3;}
+}
+
+/* NUMERI - Sezione 6 */
+.numeri-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+}
+.numero{
+  position:relative;
+  background:linear-gradient(135deg, rgba(59,91,219,0.05) 0%, rgba(123,63,196,0.05) 50%, rgba(224,64,160,0.06) 100%);
+  border:1px solid rgba(123,63,196,0.15);
+  border-radius:var(--radius);
+  padding:44px 24px 32px;
+  overflow:hidden;
+  transition:all 0.25s;
+}
+.numero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);
+}
+.numero::after{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:200px;height:200px;border-radius:50%;
+  background:var(--grad);opacity:0.08;filter:blur(30px);
+  pointer-events:none;transition:opacity 0.25s;
+}
+.numero:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(123,63,196,0.18);border-color:rgba(123,63,196,0.3);}
+.numero:hover::after{opacity:0.16;}
+.numero-val{
+  font-size:clamp(38px,3.8vw,58px);
+  font-weight:800;letter-spacing:-2.5px;line-height:0.9;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:16px;display:block;
+  white-space:nowrap;
+}
+.numero-lbl{
+  font-size:14px;color:var(--text);line-height:1.5;
+  font-weight:500;position:relative;z-index:1;
+}
+
+/* FORM - Sezione 7 */
+.cta-section{
+  background:var(--card-bg);
+  padding:clamp(60px,10vh,120px) 0;
+  border-top:1px solid var(--border);
+}
+.cta-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.cta-copy h2{
+  font-size:clamp(28px,3.5vw,44px);
+  font-weight:800;line-height:1.1;letter-spacing:-1px;
+  margin-bottom:24px;
+}
+.cta-copy p{font-size:17px;color:var(--text-muted);line-height:1.6;}
+
+.form{
+  background:var(--page-bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:40px;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-field{margin-bottom:18px;}
+.form label{
+  display:block;font-size:12px;font-weight:700;letter-spacing:0.5px;
+  color:var(--text);margin-bottom:8px;text-transform:uppercase;
+}
+.form label .req{color:var(--pink);margin-left:2px;}
+.form input,.form select{
+  width:100%;padding:14px 16px;
+  font-family:inherit;font-size:15px;
+  border:1.5px solid var(--border);border-radius:10px;
+  background:#fff;color:var(--text);
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.form input:focus,.form select:focus{
+  outline:none;border-color:var(--border-active);
+  box-shadow:0 0 0 3px rgba(123,63,196,0.1);
+}
+.privacy{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:var(--text-muted);line-height:1.5;
+  margin:20px 0 24px;
+}
+.privacy input{width:auto;margin-top:2px;flex-shrink:0;}
+.privacy a{color:var(--purple);text-decoration:underline;}
+.form .btn{width:100%;justify-content:center;padding:18px;font-size:16px;}
+
+/* FOOTER */
+footer{background:#0f0f1e;color:rgba(255,255,255,0.7);padding:56px 0 32px;}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;
+  padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:32px;
+}
+.footer-brand{display:flex;flex-direction:column;gap:20px;}
+.footer-brand .logo img{height:64px;}
+.footer-social{display:flex;gap:12px;margin-top:4px;}
+.footer-social a{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:8px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.7);
+  transition:all 0.2s;
+}
+.footer-social a:hover{background:var(--grad);border-color:transparent;color:#fff;transform:translateY(-2px);}
+.footer-social svg{width:18px;height:18px;}
+.footer-col h4{
+  font-size:11px;font-weight:800;letter-spacing:1.5px;
+  color:#fff;text-transform:uppercase;margin-bottom:20px;
+}
+.footer-col a{
+  display:block;color:rgba(255,255,255,0.6);text-decoration:none;
+  font-size:14px;padding:6px 0;transition:color 0.2s;
+}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:rgba(255,255,255,0.4);flex-wrap:wrap;gap:16px;
+}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .tappe-track{grid-template-columns:repeat(5,1fr);}
+  .tappa-nome{font-size:18px;}
+}
+@media (max-width:900px){
+  .visita-key{grid-template-columns:1fr 1fr;}
+  .numeri-grid{grid-template-columns:1fr;}
+  .problema-wrap,.cta-wrap,.footer-top,.percorso-callouts,.attivazione-grid{grid-template-columns:1fr;gap:32px;}
+  .tappe-track{grid-template-columns:1fr;gap:32px;}
+  .tappa-line{display:none;}
+  .form-row{grid-template-columns:1fr;}
+  .form{padding:28px;}
+}
+@media (max-width:600px){
+  .visita-key{grid-template-columns:1fr;}
+}
+  .lf-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden;}
+  .lf-opz{font-weight:400;opacity:.75;}
+  .lf-msg{margin:4px 0 14px;padding:12px 14px;border-radius:12px;font-size:14px;line-height:1.5;}
+  .lf-msg.errore{background:rgba(224,64,160,.08);border:1.5px solid rgba(224,64,160,.35);color:#9d174d;}
+  .form button[type="submit"][disabled]{opacity:.6;cursor:wait;}
+  .lf-grazie{text-align:center;padding:36px 12px;}
+  .lf-grazie .lf-ico{width:56px;height:56px;border-radius:50%;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .lf-grazie h3{font-size:22px;margin:0 0 8px;}
+  .lf-grazie p{color:var(--text-muted);margin:0;line-height:1.6;}
+</style>
+</head>
+<body id="top">
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="container topnav-inner">
+    <a href="#top" class="logo"><img src="skillherz-logo-dark.png" alt="Skillherz"></a>
+    <div class="nav-links">
+      <a href="#problema">Problema</a>
+      <a href="#metodo">Metodo</a>
+      <a href="#attivazione">Attivazione</a>
+      <a href="#percorso">Percorso</a>
+      <a href="#visita">Visita aziendale</a>
+      <a href="#numeri">Numeri</a>
+    </div>
+    <a href="#form" class="btn">Richiedi informazioni</a>
+  </div>
+</nav>
+
+<!-- SEZIONE 1 - HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Orientarsi<br><span class="grad-text">si allena.</span></h1>
+        <p class="hero-sub">Cinque incontri per aiutare i vostri figli a costruire la capacità di scegliere in modo consapevole.</p>
+        <p class="hero-sub">Nessun test rapido. Nessuna etichetta. Un metodo che dura nel tempo.</p>
+        <a href="#form" class="btn">Richiedi informazioni <span class="btn-arrow">→</span></a>
+        <p class="micro">Risposta entro 48 ore.</p>
+      </div>
+      <div class="hero-media">
+        <img src="Strappo-contesto.jpg" alt="Immagine di contesto sui percorsi di orientamento Skillherz">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 2 - PROBLEMA -->
+<section class="section" id="problema">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Problema</div>
+      <h2>L'orientamento tradizionale<br><span class="grad-text">non basta più.</span></h2>
+      <p class="problema-intro">Vostro figlio ha una scelta da fare — la scuola superiore, l'università, il percorso&nbsp;da&nbsp;intraprendere.<br>E rischia di bloccarsi.</p>
+      <p>Non è mancanza di talento. È mancanza di metodo.</p>
+      <p>Prima di decidere <strong>cosa</strong> scegliere, i ragazzi hanno bisogno di capire <strong>come</strong> si decide.</p>
+    </div>
+
+    <div class="problema-wrap">
+      <div class="problema-col prima">
+        <h3>L'orientamento che conoscono</h3>
+        <div class="problema-list">
+          <div class="problema-item">Troppe informazioni su scuole e mestieri, tutte insieme.</div>
+          <div class="problema-item">Un test che restituisce un'etichetta e si ferma lì.</div>
+          <div class="problema-item">L'aspettativa di una scelta da fare subito, e per sempre.</div>
+        </div>
+      </div>
+      <div class="problema-col dopo">
+        <h3>Quello che serve davvero</h3>
+        <div class="problema-list">
+          <div class="problema-item">Capire come si decide, prima di decidere cosa.</div>
+          <div class="problema-item">Riconoscere cosa accende davvero, non cosa "si dovrebbe".</div>
+          <div class="problema-item">Un metodo che dura nel tempo, non una risposta che scade.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="problema-quote">
+      Scegliere non è un colpo di fortuna, e non è un talento riservato a pochi. È un modo di ragionare che si può imparare — e come tutte le competenze, si allena.
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 3 - METODO (full-bleed gradient) -->
+<section class="metodo-section" id="metodo">
+  <div class="container">
+    <div class="metodo-grid">
+      <div class="metodo-gallery" data-metodo-gallery>
+        <div class="metodo-gallery-slide is-active">
+          <img src="metodo-water-school.jpg" alt="Studenti delle superiori in un evento di orientamento Skillherz">
+        </div>
+        <div class="metodo-gallery-slide">
+          <img src="metodo-concentrazione.jpg" alt="Studente concentrato durante un percorso Skillherz">
+        </div>
+        <div class="metodo-gallery-slide">
+          <img src="metodo-video.jpg" alt="Studentesse al lavoro su un progetto video Skillherz">
+        </div>
+
+        <button class="metodo-gallery-nav metodo-gallery-prev" data-metodo-prev aria-label="Foto precedente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="metodo-gallery-nav metodo-gallery-next" data-metodo-next aria-label="Foto successiva">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+
+        <div class="metodo-gallery-dots" data-metodo-dots></div>
+      </div>
+
+      <div class="metodo-content">
+        <div class="section-label">Metodo</div>
+        <h2>Orientarsi non significa trovare la risposta giusta. Significa imparare a costruirla.</h2>
+
+        <div class="metodo-body">
+          <p>Il percorso di orientamento Skillherz offre uno spazio strutturato in cui i ragazzi si misurano con le proprie scelte, le proprie attitudini, il mondo del lavoro reale. I nostri educatori accompagnano ciascun ragazzo osservando le loro <strong>competenze trasversali</strong> e li aiutano a scremare le possibilità che hanno di fronte.</p>
+          <p><strong>Non decidiamo per loro. Diamo loro il metodo per decidere.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 4 - ATTIVAZIONE -->
+<section class="section" id="attivazione">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Attivazione</div>
+      <h2>Due modi per <span class="grad-text">attivare il percorso.</span></h2>
+      <p>Il percorso di orientamento può essere erogato dalla scuola o richiesto direttamente dalle famiglie. Il metodo e le cinque tappe restano gli stessi — cambia il canale, e con esso il costo.</p>
+    </div>
+
+    <div class="attivazione-grid">
+      <div class="attivazione-card">
+        <div class="attivazione-tags">
+          <span class="attivazione-tag tag-free">Gratuito</span>
+          <span class="attivazione-tag">Tramite la scuola</span>
+        </div>
+        <div class="attivazione-num">01</div>
+        <div class="attivazione-title">A scuola</div>
+        <div class="attivazione-headline">Attivato dalla scuola per tutta la classe.</div>
+        <p class="attivazione-desc">Se la scuola di vostro figlio lavora già con Skillherz, il percorso può essere proposto e attivato per l'intera classe — in questo caso non ci sono costi per la famiglia.</p>
+        <p class="attivazione-desc">Se la collaborazione non è attivabile nell'anno scolastico, è possibile usufruire dell'opzione privata.</p>
+      </div>
+
+      <div class="attivazione-card">
+        <div class="attivazione-tags">
+          <span class="attivazione-tag tag-private">Servizio privato</span>
+          <span class="attivazione-tag">Su richiesta</span>
+        </div>
+        <div class="attivazione-num">02</div>
+        <div class="attivazione-title">In autonomia</div>
+        <div class="attivazione-headline">Otto ore in cinque incontri, quando lo decidete voi.</div>
+        <p class="attivazione-desc">Se aspettare l'attivazione scolastica non è un'opzione, potete richiedere il percorso direttamente. Stesso metodo, stesse cinque tappe, formula singola o in piccolo gruppo.</p>
+        <p class="attivazione-desc">La formula individuale è più focalizzata su vostro figlio; quella di gruppo — con amici o compagni di classe — è più economica e favorisce il confronto tra pari.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 5 - PERCORSO -->
+<section class="section" id="percorso">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Percorso</div>
+      <h2>Cinque tappe. <span class="grad-text">Un unico filo.</span></h2>
+      <p>Il percorso si sviluppa in cinque incontri da due ore ciascuno — quattro in aula — più una visita aziendale. Cinque momenti connessi e obbligatori, non cinque attività separate.</p>
+    </div>
+
+    <div class="tappe-schema">
+      <div class="tappe-track">
+        <div class="tappa-line"></div>
+
+        <div class="tappa">
+          <div class="tappa-node"></div>
+          <div class="tappa-num">Tappa 01</div>
+          <div class="tappa-nome">Le scelte</div>
+          <p class="tappa-senso">Iniziamo a porre le basi: capiamo quali fattori entrano in gioco quando si decide.</p>
+        </div>
+
+        <div class="tappa">
+          <div class="tappa-node"></div>
+          <div class="tappa-num">Tappa 02</div>
+          <div class="tappa-nome">Le attitudini</div>
+          <p class="tappa-senso">Consapevolezza sulle proprie attitudini e le loro applicazioni.</p>
+        </div>
+
+        <div class="tappa">
+          <div class="tappa-node"></div>
+          <div class="tappa-num">Tappa 03</div>
+          <div class="tappa-nome">Il mondo del lavoro</div>
+          <p class="tappa-senso">18 settori spiegati per quello che sono davvero — non per lo stereotipo.</p>
+        </div>
+
+        <div class="tappa">
+          <div class="tappa-node"></div>
+          <div class="tappa-num">Tappa 04</div>
+          <div class="tappa-nome">Matching e piano d'azione</div>
+          <p class="tappa-senso">Report personalizzato senza scelta definitiva, con indicazioni sulla direzione più coerente.</p>
+        </div>
+
+        <div class="tappa">
+          <div class="tappa-node"></div>
+          <div class="tappa-num">Tappa 05</div>
+          <div class="tappa-nome">La visita</div>
+          <p class="tappa-senso">"Mi ci vedo qui?" Un'esperienza immersiva con persone reali, non una presentazione.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 5 - VISITA -->
+<section class="section visita-section" id="visita">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Visita aziendale</div>
+      <h2>Il culmine del percorso.</h2>
+      <p class="visita-intro">La quinta tappa non è un evento accessorio: è il momento in cui l'orientamento smette di essere teoria e diventa esperienza reale.</p>
+    </div>
+
+    <div class="visita-grid">
+      <div class="visita-content">
+        <p class="visita-hook">"Mi ci vedo qui?"</p>
+
+        <div class="visita-body">
+          <p>Non un colloquio, ma un'esplorazione del settore e delle mansioni. Non "cosa so fare", ma "mi ci immagino lavorando qui". Qui si lavora sul futuro possibile — in un incontro immersivo con persone reali, non su un webinar istituzionale.</p>
+          <p>I ragazzi entrano in azienda, ascoltano chi ci lavora davvero, fanno le domande scomode che di solito non si osa fare. Nessuno li sta valutando.</p>
+          <p><strong>La domanda è tutta loro: appartengo a questo mondo? Voglio farne parte?</strong></p>
+        </div>
+      </div>
+
+      <div class="visita-media">
+        <img src="visita-azienda.jpg" alt="Studenti in visita in un impianto industriale del territorio durante un percorso di orientamento Skillherz">
+      </div>
+    </div>
+
+    <div class="visita-key">
+      <div class="visita-key-item">
+        <h4>Esplorazione, non colloquio.</h4>
+        <p>Ambiente, prodotto, persone: tre stazioni in rotazione, con Q&A libero con chi lavora in azienda.</p>
+      </div>
+      <div class="visita-key-item">
+        <h4>Racconto autentico, non presentazione.</h4>
+        <p>Un testimone racconta senza copione — cosa non sapeva quando ha iniziato, come è cambiata l'idea che si era fatto.</p>
+      </div>
+      <div class="visita-key-item">
+        <h4>Nessuna valutazione.</h4>
+        <p>Non ci sono risposte giuste. Ne esce una posizione consapevole, non una risposta esatta.</p>
+      </div>
+    </div>
+
+    <div class="percorso-callouts">
+      <div class="percorso-callout">
+        <span class="percorso-callout-tag">A chiusura del percorso</span>
+        <h4>Attestato di partecipazione<sup style="font-size:0.55em;font-weight:600;margin-left:2px;">*</sup></h4>
+        <p>Non certifica una scelta. Certifica un percorso: quello di chi si è messo alla prova su come si decide.</p>
+        <p style="font-size:12px;font-style:italic;color:var(--text-muted);margin-top:12px;"><sup>*</sup> Le ore di Orientamento potrebbero essere certificate dalla scuola come Attività extra-scolastiche. Contattaci per saperne di più.</p>
+      </div>
+    </div>
+
+    <div class="visita-outlink">
+      <span>Le visite aziendali possono essere svolte anche fuori dal percorso di orientamento; ci impegniamo perché chiunque possa avere gli strumenti per comprendere la propria strada.</span>
+      <a href="https://skillherz.com/studenti/visite-aziendali/" target="_blank" rel="noopener">Scopri le visite aziendali <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 7 - NUMERI -->
+<section class="section" id="numeri">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Numeri</div>
+      <h2>Otto province. <span class="grad-text">Un metodo.</span></h2>
+      <p class="oneline">Skillherz è oggi la prima infrastruttura educativa privata del Nord Italia per erogazione di percorsi di Orientamento e Formazione scuola-lavoro.</p>
+    </div>
+
+    <div class="numeri-grid">
+      <div class="numero">
+        <span class="numero-val">30.000+</span>
+        <div class="numero-lbl">Studenti coinvolti ogni anno.</div>
+      </div>
+      <div class="numero">
+        <span class="numero-val">400+</span>
+        <div class="numero-lbl">Scuole partner sul territorio.</div>
+      </div>
+      <div class="numero">
+        <span class="numero-val">8</span>
+        <div class="numero-lbl">Province operative nel Nord Italia.</div>
+      </div>
+      <div class="numero">
+        <span class="numero-val">9,4<span style="font-size:0.5em;">/10</span></span>
+        <div class="numero-lbl">Livello di raccomandazione dei docenti per orientamento e FSL.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 7 - FORM -->
+<section class="cta-section" id="form">
+  <div class="container">
+    <div class="cta-wrap">
+      <div class="cta-copy">
+        <div class="section-label">Parliamone</div>
+        <h2>Vuoi che tuo figlio impari <span class="grad-text">a scegliere?</span></h2>
+        <p>Un consulente vi contatterà entro 48 ore per capire il contesto e valutare insieme il percorso più adatto. Senza impegno.</p>
+      </div>
+
+      <form class="form" data-campagna="orientamento">
+        <div class="lf-hp" aria-hidden="true"><label>Sito web <input type="text" name="sito_web" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form-row">
+          <div class="form-field"><label>Nome <span class="req">*</span></label><input type="text" name="nome" required></div>
+          <div class="form-field"><label>Cognome <span class="req">*</span></label><input type="text" name="cognome" required></div>
+        </div>
+        <div class="form-field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="form-field">
+          <label>Classe frequentata dal ragazzo/a <span class="req">*</span></label>
+          <select name="classe" required>
+            <option value="">Seleziona</option>
+            <option>2ª media</option>
+            <option>3ª media</option>
+            <option>1ª superiore</option>
+            <option>2ª superiore</option>
+            <option>3ª superiore</option>
+            <option>4ª superiore</option>
+            <option>5ª superiore</option>
+            <option>Altro</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Città <span class="req">*</span></label><input type="text" name="citta" required></div>
+        <label class="privacy">
+          <input type="checkbox" name="consenso_privacy" value="si" required>
+          <span>Ho letto e accetto la <a href="https://drive.google.com/file/d/1ddiqTdhsasQHSFa_Yf_Ip6Yz_eoWQHNr/view" target="_blank" rel="noopener">privacy & cookie policy</a>. <span class="req">*</span></span>
+        </label>
+        <label class="privacy">
+          <input type="checkbox" name="consenso_marketing" value="si">
+          <span>Acconsento a ricevere aggiornamenti su percorsi di orientamento, eventi e iniziative Skillherz. <span class="lf-opz">(facoltativo)</span></span>
+        </label>
+        <button type="submit" class="btn">Richiedi informazioni <span class="btn-arrow">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="https://skillherz.com/" class="logo" target="_blank" rel="noopener"><img src="skillherz-logo-white.png" alt="Skillherz"></a>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/skillherz/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.852 3.37-1.852 3.601 0 4.267 2.37 4.267 5.455v6.288zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/skillherz_official/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/people/Skillherz/61586932675489/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@Skillherz" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Naviga</h4>
+        <a href="https://skillherz.com/genitori/percorsi-scolastici/" target="_blank" rel="noopener">Percorsi scolastici</a>
+        <a href="https://skillherz.com/chi-siamo/" target="_blank" rel="noopener">Chi siamo</a>
+        <a href="https://skillherz.com/contattaci/" target="_blank" rel="noopener">Contatti</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://drive.google.com/file/d/1ddiqTdhsasQHSFa_Yf_Ip6Yz_eoWQHNr/view" target="_blank" rel="noopener">Privacy & cookie policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Gruppo Edoomark</div>
+      <div>www.skillherz.com</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const gallery = document.querySelector('[data-metodo-gallery]');
+  if(!gallery) return;
+  const slides = Array.from(gallery.querySelectorAll('.metodo-gallery-slide'));
+  const prevBtn = gallery.querySelector('[data-metodo-prev]');
+  const nextBtn = gallery.querySelector('[data-metodo-next]');
+  const dotsWrap = gallery.querySelector('[data-metodo-dots]');
+  let current = 0;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'metodo-gallery-dot' + (i === 0 ? ' is-active' : '');
+    dot.setAttribute('aria-label', 'Vai alla foto ' + (i + 1));
+    dot.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(i){
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
+    dots.forEach((d, idx) => d.classList.toggle('is-active', idx === current));
+  }
+
+  prevBtn.addEventListener('click', () => go(current - 1));
+  nextBtn.addEventListener('click', () => go(current + 1));
+
+  gallery.setAttribute('tabindex', '0');
+  gallery.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowLeft') go(current - 1);
+    if(e.key === 'ArrowRight') go(current + 1);
+  });
+})();
+</script>
+
+<script>
+/* ============================================================
+   Collegamento del form al backend Campagne (Apps Script).
+   ENDPOINT: l'URL /exec del backend, da impostare dopo la pubblicazione.
+   ============================================================ */
+(function () {
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbym7qTKVoAFjf6PZ38kZm0zhERBM_L9GYnBl1MWKEq_E77llbb2uXzuylr_Oh173ErK/exec';
+  var form = document.querySelector('form[data-campagna]');
+  if (!form) return;
+  var apertura = Date.now();
+
+  function param(nome) {
+    try { return new URLSearchParams(location.search).get(nome) || ''; } catch (e) { return ''; }
+  }
+  function escape(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function errore(testo) {
+    var box = form.querySelector('.lf-msg');
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'lf-msg errore';
+      box.setAttribute('role', 'alert');
+      var btn = form.querySelector('button[type="submit"]');
+      btn.parentNode.insertBefore(box, btn);
+    }
+    box.textContent = testo;
+  }
+  function grazie(titolo, testo) {
+    form.innerHTML =
+      '<div class="lf-grazie" role="status">' +
+        '<div class="lf-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>' +
+        '<h3>' + escape(titolo) + '</h3><p>' + escape(testo) + '</p>' +
+      '</div>';
+    form.scrollIntoView({behavior: 'smooth', block: 'center'});
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!ENDPOINT) { errore('Il modulo non è ancora attivo. Riprova tra poco.'); return; }
+
+    var dati = {};
+    new FormData(form).forEach(function (v, k) { dati[k] = String(v); });
+    var spunta = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? (el.checked ? 'si' : 'no') : ''; };
+    dati.consenso_privacy = spunta('consenso_privacy');
+    dati.consenso_marketing = spunta('consenso_marketing');
+    if (form.querySelector('[name="maggiore14"]')) dati.maggiore14 = spunta('maggiore14');
+    dati.campagna = form.getAttribute('data-campagna');
+    dati.pagina = location.origin + location.pathname;
+    dati.utm_source = param('utm_source');
+    dati.utm_medium = param('utm_medium');
+    dati.utm_campaign = param('utm_campaign');
+    dati.secondi = Math.round((Date.now() - apertura) / 1000);
+
+    var btn = form.querySelector('button[type="submit"]');
+    var etichetta = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Invio in corso…';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},   /* niente preflight CORS verso Apps Script */
+      body: JSON.stringify(dati)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r || !r.ok) throw new Error((r && r.error) || '');
+        grazie(r.titolo || 'Grazie!', r.messaggio || 'Abbiamo ricevuto la tua richiesta.');
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        btn.innerHTML = etichetta;
+        errore((err && err.message) || 'Non siamo riusciti a inviare la richiesta. Riprova tra poco.');
+      });
+  });
+})();
+</script>
+
+</body>
+</html>

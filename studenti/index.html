@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noi lo vediamo — Skillherz</title>
+<meta name="description" content="Landing page campagna Skillherz per studenti.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#3B5BDB; --purple:#7B3FC4; --pink:#E040A0;
+  --grad:linear-gradient(135deg,#3B5BDB 0%,#7B3FC4 50%,#E040A0 100%);
+  --grad-soft:linear-gradient(135deg,rgba(59,91,219,0.08) 0%,rgba(123,63,196,0.08) 50%,rgba(224,64,160,0.08) 100%);
+  --page-bg:#F8F7FF;
+  --text:#1a1a2e; --text-muted:#6B7280; --text-light:#9CA3AF;
+  --border:#E5E7EB; --border-active:#7B3FC4;
+  --card-bg:#ffffff;
+  --radius:16px; --radius-sm:10px;
+  --shadow:0 4px 24px rgba(59,91,219,0.08);
+  --shadow-lg:0 12px 48px rgba(59,91,219,0.15);
+  --green:#10B981;
+  --green-soft:rgba(16,185,129,0.12);
+  --max:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  background:var(--page-bg);color:var(--text);
+  line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.esperienza-title,.quote-item{text-wrap:balance;}
+p{text-wrap:pretty;}
+
+.container{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+.grad-text{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.section-label{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:20px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 32px;border-radius:12px;
+  background:var(--grad);color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 8px 24px rgba(123,63,196,0.25);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(123,63,196,0.35);}
+.btn-outline{
+  background:transparent;color:var(--purple);
+  border:1.5px solid var(--purple);box-shadow:none;
+}
+.btn-outline:hover{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 32px rgba(123,63,196,0.25);}
+.btn-arrow{font-size:18px;transition:transform 0.2s;}
+.btn:hover .btn-arrow{transform:translateX(4px);}
+.micro{font-size:13px;color:var(--text-muted);margin-top:14px;}
+
+/* NAV */
+.topnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(248,247,255,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topnav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:32px;}
+.logo{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.logo img{height:52px;width:auto;display:block;}
+.nav-links{display:flex;gap:28px;align-items:center;flex:1;justify-content:center;}
+.nav-links a{
+  font-size:14px;font-weight:600;color:var(--text-muted);
+  text-decoration:none;transition:color 0.2s;position:relative;
+}
+.nav-links a:hover{color:var(--purple);}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-6px;left:0;right:0;height:2px;
+  background:var(--grad);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.25s;border-radius:2px;
+}
+.nav-links a:hover::after{transform:scaleX(1);}
+.topnav .btn{padding:10px 20px;font-size:13px;box-shadow:none;flex-shrink:0;}
+@media(max-width:900px){.nav-links{display:none;}}
+
+/* HERO - split layout con immagine */
+.hero{
+  padding:clamp(50px,8vh,90px) 0 clamp(60px,10vh,110px);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-200px;left:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:var(--grad);opacity:0.08;filter:blur(80px);pointer-events:none;
+}
+.hero-wrap{
+  display:grid;grid-template-columns:1.15fr 1fr;
+  gap:56px;align-items:center;
+}
+.hero-text h1{
+  font-size:clamp(56px,8vw,120px);
+  font-weight:800;line-height:0.95;letter-spacing:-3.5px;
+  margin-bottom:20px;
+}
+.hero-payoff{
+  font-size:clamp(20px,2.2vw,28px);
+  font-weight:700;letter-spacing:-0.5px;line-height:1.15;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:32px;
+  max-width:520px;
+}
+.hero-sub{
+  font-size:clamp(17px,1.7vw,20px);
+  color:var(--text-muted);
+  max-width:520px;line-height:1.5;margin-bottom:16px;
+}
+.hero-sub + .hero-sub{margin-bottom:40px;}
+.hero-image{
+  position:relative;
+  aspect-ratio:4 / 5;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(59,91,219,0.15);
+}
+.hero-image img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+
+/* SECTIONS */
+.section{padding:clamp(60px,10vh,120px) 0;}
+.section-header{max-width:900px;margin-bottom:56px;}
+.section-header h2{
+  font-size:clamp(32px,4.5vw,54px);
+  font-weight:800;line-height:1.05;letter-spacing:-1.5px;
+  margin-bottom:24px;max-width:820px;
+}
+.section-header p{font-size:18px;color:var(--text-muted);line-height:1.55;max-width:780px;}
+.section-header p + p{margin-top:14px;}
+.section-header.center{text-align:center;margin-left:auto;margin-right:auto;}
+.section-header.center h2, .section-header.center p{margin-left:auto;margin-right:auto;}
+
+/* RICONOSCERTI - Sezione 2 */
+.quotes-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  margin-bottom:56px;
+}
+.quote-item{
+  background:var(--card-bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:32px 36px;
+  font-size:clamp(18px,2vw,22px);
+  font-weight:600;font-style:italic;line-height:1.35;
+  color:var(--text);
+  position:relative;
+  transition:all 0.25s;
+}
+.quote-item::before{
+  content:'"';
+  position:absolute;top:-12px;left:22px;
+  font-size:80px;line-height:1;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-style:normal;font-weight:800;
+  font-family:Georgia, serif;
+}
+.quote-item:hover{border-color:var(--border-active);box-shadow:var(--shadow-lg);transform:translateY(-4px);}
+.quote-closing{
+  text-align:center;
+  font-size:clamp(20px,2.4vw,28px);
+  font-weight:700;letter-spacing:-0.5px;line-height:1.3;
+  max-width:820px;margin:0 auto;
+  padding:32px 40px;
+  background:var(--grad-soft);
+  border-radius:var(--radius);
+  border-left:4px solid var(--purple);
+  border-right:4px solid var(--purple);
+  text-wrap:balance;
+}
+.quote-closing em{
+  font-style:normal;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ESPERIENZA - Sezione 3 (full-bleed gradient) */
+.esperienza-section{
+  background:var(--grad);color:#fff;
+  padding:clamp(80px,12vh,140px) 0;
+  position:relative;overflow:hidden;
+}
+.esperienza-section::before,.esperienza-section::after{
+  content:'';position:absolute;border-radius:50%;
+  background:rgba(255,255,255,0.06);filter:blur(60px);pointer-events:none;
+}
+.esperienza-section::before{top:-100px;left:-100px;width:400px;height:400px;}
+.esperienza-section::after{bottom:-150px;right:-150px;width:500px;height:500px;}
+.esperienza-section .container{position:relative;z-index:2;}
+.esperienza-section .section-label{color:rgba(255,255,255,0.6);}
+.esperienza-section h2{
+  font-size:clamp(32px,4.5vw,58px);
+  font-weight:800;line-height:1.05;letter-spacing:-1.5px;
+  color:#fff;margin-bottom:24px;max-width:820px;
+}
+.esperienza-section .section-header p{
+  color:rgba(255,255,255,0.85);
+}
+
+.esperienza-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  margin-top:16px;
+}
+.esperienza-grid .item-lg{grid-column:span 2;}
+.esperienza-video{
+  position:relative;
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin:40px 0 48px;
+  aspect-ratio:16/9;
+  background:#000;
+  box-shadow:0 24px 60px rgba(0,0,0,0.4);
+}
+.esperienza-video video{
+  width:100%;height:100%;display:block;
+  object-fit:cover;
+}
+.esperienza-video-hint{
+  position:absolute;top:16px;left:16px;
+  padding:6px 12px;border-radius:100px;
+  background:rgba(15,15,30,0.72);
+  backdrop-filter:blur(8px);
+  color:#fff;font-size:11px;font-weight:700;
+  letter-spacing:1.2px;text-transform:uppercase;
+  z-index:2;pointer-events:none;
+}
+.esperienza-manifesto{
+  font-size:clamp(24px,3vw,40px);
+  font-weight:800;letter-spacing:-1px;line-height:1.2;
+  color:#fff;text-align:center;
+  margin:0 auto;max-width:820px;
+  text-wrap:balance;
+}
+.esperienza-manifesto em{
+  font-style:normal;color:rgba(255,255,255,0.55);font-weight:700;
+}
+.esperienza-item{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(8px);
+  border-radius:var(--radius);
+  padding:32px 32px 32px;
+  color:#fff;
+  transition:all 0.25s;
+}
+.esperienza-item:hover{
+  background:rgba(255,255,255,0.14);
+  border-color:rgba(255,255,255,0.3);
+  transform:translateY(-4px);
+}
+.esperienza-item h4{
+  font-size:clamp(20px,2vw,26px);
+  font-weight:800;letter-spacing:-0.5px;line-height:1.15;
+  margin-bottom:14px;
+}
+.esperienza-item p{
+  font-size:15.5px;line-height:1.55;
+  color:rgba(255,255,255,0.85);
+}
+.esperienza-item strong{color:#fff;font-weight:700;}
+
+/* COME INIZIARE - Sezione 4 */
+.binari-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.binario{
+  background:var(--card-bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:36px 32px;
+  display:flex;flex-direction:column;
+  transition:all 0.25s;
+  position:relative;overflow:hidden;
+}
+.binario::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--grad);opacity:0.4;transition:opacity 0.25s;
+}
+.binario:hover{
+  border-color:var(--border-active);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+}
+.binario:hover::before{opacity:1;}
+.binario-num{
+  font-size:14px;font-weight:800;letter-spacing:2px;
+  color:var(--text-light);text-transform:uppercase;
+  margin-bottom:8px;
+}
+.binario-tags{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:20px;
+}
+.binario-tag{
+  font-size:10px;font-weight:700;letter-spacing:0.5px;
+  text-transform:uppercase;
+  padding:5px 10px;
+  border-radius:6px;
+  color:var(--purple);
+  background:rgba(123,63,196,0.1);
+  white-space:nowrap;
+}
+.binario-tag.tag-free{
+  background:var(--green-soft);
+  color:var(--green);
+  border:1px solid rgba(16,185,129,0.25);
+}
+.binario-tag.tag-private{
+  background:rgba(224,64,160,0.1);
+  color:var(--pink);
+  border:1px solid rgba(224,64,160,0.25);
+}
+.binario-title{
+  font-size:clamp(22px,2.4vw,28px);
+  font-weight:800;letter-spacing:-0.8px;line-height:1.15;
+  margin-bottom:6px;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.binario-headline{
+  font-size:17px;font-weight:700;
+  color:var(--text);margin-bottom:16px;
+  line-height:1.3;
+}
+.binario-desc{
+  font-size:14.5px;line-height:1.6;color:var(--text-muted);
+  margin-bottom:16px;flex-grow:1;
+}
+.binario-quote{
+  font-size:13.5px;line-height:1.55;font-style:italic;
+  color:var(--text);
+  padding:14px 16px;
+  background:var(--grad-soft);
+  border-radius:var(--radius-sm);
+  border-left:3px solid var(--purple);
+  margin-bottom:8px;
+}
+.binario-quote-label{
+  display:block;
+  font-size:11px;font-weight:700;letter-spacing:0.5px;
+  color:var(--purple);text-transform:uppercase;
+  margin-bottom:6px;
+  font-style:normal;
+}
+.binario .btn-outline{
+  align-self:flex-start;
+  font-size:13px;padding:12px 22px;
+  margin-top:12px;
+}
+
+/* NUMERI - Sezione 5 */
+.numeri-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+}
+.numero{
+  position:relative;
+  background:linear-gradient(135deg, rgba(59,91,219,0.05) 0%, rgba(123,63,196,0.05) 50%, rgba(224,64,160,0.06) 100%);
+  border:1px solid rgba(123,63,196,0.15);
+  border-radius:var(--radius);
+  padding:44px 24px 32px;
+  overflow:hidden;
+  transition:all 0.25s;
+}
+.numero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);
+}
+.numero::after{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:200px;height:200px;border-radius:50%;
+  background:var(--grad);opacity:0.08;filter:blur(30px);
+  pointer-events:none;transition:opacity 0.25s;
+}
+.numero:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(123,63,196,0.18);border-color:rgba(123,63,196,0.3);}
+.numero:hover::after{opacity:0.16;}
+.numero-val{
+  font-size:clamp(38px,3.8vw,58px);
+  font-weight:800;letter-spacing:-2.5px;line-height:0.9;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:16px;display:block;
+  white-space:nowrap;
+}
+.numero-lbl{
+  font-size:14px;color:var(--text);line-height:1.5;
+  font-weight:500;position:relative;z-index:1;
+}
+
+/* FORM - Sezione 6 */
+.cta-section{
+  background:var(--card-bg);
+  padding:clamp(60px,10vh,120px) 0;
+  border-top:1px solid var(--border);
+}
+.cta-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.cta-copy h2{
+  font-size:clamp(28px,3.5vw,44px);
+  font-weight:800;line-height:1.1;letter-spacing:-1px;
+  margin-bottom:24px;
+}
+.cta-copy p{font-size:17px;color:var(--text-muted);line-height:1.6;}
+
+.form{
+  background:var(--page-bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:40px;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-field{margin-bottom:18px;}
+.form-field.hidden{display:none;}
+.form label{
+  display:block;font-size:12px;font-weight:700;letter-spacing:0.5px;
+  color:var(--text);margin-bottom:8px;text-transform:uppercase;
+}
+.form label .req{color:var(--pink);margin-left:2px;}
+.form input,.form select{
+  width:100%;padding:14px 16px;
+  font-family:inherit;font-size:15px;
+  border:1.5px solid var(--border);border-radius:10px;
+  background:#fff;color:var(--text);
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.form input:focus,.form select:focus{
+  outline:none;border-color:var(--border-active);
+  box-shadow:0 0 0 3px rgba(123,63,196,0.1);
+}
+.form-check{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:14px;color:var(--text);line-height:1.5;
+  margin:20px 0 14px;
+  padding:14px 16px;
+  background:var(--grad-soft);
+  border-radius:var(--radius-sm);
+  border-left:3px solid var(--purple);
+  cursor:pointer;
+}
+.form-check input{width:auto;margin-top:2px;flex-shrink:0;}
+.privacy{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:var(--text-muted);line-height:1.5;
+  margin:14px 0 24px;
+}
+.privacy input{width:auto;margin-top:2px;flex-shrink:0;}
+.privacy a{color:var(--purple);text-decoration:underline;}
+.form .btn{width:100%;justify-content:center;padding:18px;font-size:16px;}
+.form-info{
+  font-size:12px;color:var(--text-muted);line-height:1.5;
+  margin-top:14px;text-align:center;
+}
+
+/* CHIUSURA - Sezione 7 */
+.exit-section{
+  padding:clamp(40px,6vh,60px) 0;
+  background:var(--page-bg);
+  border-top:1px solid var(--border);
+}
+.exit-callout{
+  text-align:center;
+  max-width:720px;margin:0 auto;
+  padding:32px 24px;
+}
+.exit-callout h3{
+  font-size:clamp(22px,2.4vw,28px);
+  font-weight:800;letter-spacing:-0.5px;line-height:1.25;
+  margin-bottom:14px;
+}
+.exit-callout p{
+  font-size:16px;color:var(--text-muted);line-height:1.55;
+  margin-bottom:20px;
+}
+.exit-callout a{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--purple);font-weight:700;font-size:15px;
+  text-decoration:none;
+  padding:12px 24px;
+  border:1.5px solid var(--purple);
+  border-radius:12px;
+  transition:all 0.2s;
+}
+.exit-callout a:hover{
+  background:var(--grad);color:#fff;border-color:transparent;
+  transform:translateY(-2px);box-shadow:0 12px 32px rgba(123,63,196,0.25);
+}
+
+/* FOOTER */
+footer{background:#0f0f1e;color:rgba(255,255,255,0.7);padding:56px 0 32px;}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;
+  padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:32px;
+}
+.footer-brand{display:flex;flex-direction:column;gap:20px;}
+.footer-brand .logo img{height:64px;}
+.footer-social{display:flex;gap:12px;margin-top:4px;}
+.footer-social a{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:8px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.7);
+  transition:all 0.2s;
+}
+.footer-social a:hover{background:var(--grad);border-color:transparent;color:#fff;transform:translateY(-2px);}
+.footer-social svg{width:18px;height:18px;}
+.footer-col h4{
+  font-size:11px;font-weight:800;letter-spacing:1.5px;
+  color:#fff;text-transform:uppercase;margin-bottom:20px;
+}
+.footer-col a{
+  display:block;color:rgba(255,255,255,0.6);text-decoration:none;
+  font-size:14px;padding:6px 0;transition:color 0.2s;
+}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:rgba(255,255,255,0.4);flex-wrap:wrap;gap:16px;
+}
+
+/* RESPONSIVE */
+@media (max-width:900px){
+  .hero-wrap{grid-template-columns:1fr;gap:40px;}
+  .hero-image{max-width:420px;margin:0 auto;}
+  .quotes-grid{grid-template-columns:1fr;}
+  .esperienza-grid,.binari-grid,.numeri-grid{grid-template-columns:1fr;}
+  .esperienza-grid .item-lg{grid-column:span 1;}
+  .cta-wrap,.footer-top{grid-template-columns:1fr;gap:32px;}
+  .form-row{grid-template-columns:1fr;}
+  .form{padding:28px;}
+}
+@media (max-width:600px){
+  .numeri-grid{grid-template-columns:1fr;}
+}
+  .lf-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden;}
+  .lf-opz{font-weight:400;opacity:.75;}
+  .lf-msg{margin:4px 0 14px;padding:12px 14px;border-radius:12px;font-size:14px;line-height:1.5;}
+  .lf-msg.errore{background:rgba(224,64,160,.08);border:1.5px solid rgba(224,64,160,.35);color:#9d174d;}
+  .form button[type="submit"][disabled]{opacity:.6;cursor:wait;}
+  .lf-grazie{text-align:center;padding:36px 12px;}
+  .lf-grazie .lf-ico{width:56px;height:56px;border-radius:50%;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .lf-grazie h3{font-size:22px;margin:0 0 8px;}
+  .lf-grazie p{color:var(--text-muted);margin:0;line-height:1.6;}
+  .lf-eta{border:0;margin:20px 0 18px;padding:14px 16px;background:var(--grad-soft);border-radius:var(--radius-sm);border-left:3px solid var(--purple);}
+  .lf-eta legend{float:left;width:100%;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text);margin-bottom:10px;padding:0;}
+  .lf-eta legend .req{color:var(--pink);margin-left:2px;}
+  .lf-eta-scelte{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .form .lf-eta-scelte label{display:flex;align-items:center;gap:10px;margin:0;padding:12px 14px;background:#fff;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;transition:border-color .2s,box-shadow .2s;}
+  .form .lf-eta-scelte input{width:auto;margin:0;accent-color:var(--purple);flex-shrink:0;}
+  .form .lf-eta-scelte label:has(input:checked){border-color:var(--purple);box-shadow:0 0 0 3px rgba(123,63,196,.1);}
+  @media (max-width:600px){.lf-eta-scelte{grid-template-columns:1fr;}}
+</style>
+</head>
+<body id="top">
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="container topnav-inner">
+    <a href="#top" class="logo"><img src="skillherz-logo-dark.png" alt="Skillherz"></a>
+    <div class="nav-links">
+      <a href="#riconoscerti">Riconoscerti</a>
+      <a href="#esperienza">L'esperienza</a>
+      <a href="#iniziare">Come iniziare</a>
+      <a href="#numeri">Numeri</a>
+    </div>
+    <a href="#form" class="btn">Voglio saperne di più</a>
+  </div>
+</nav>
+
+<!-- SEZIONE 1 - HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-wrap">
+      <div class="hero-text">
+        <h1>Noi lo <span class="grad-text">vediamo.</span></h1>
+        <p class="hero-payoff">Dove il potenziale diventa visibile.</p>
+        <p class="hero-sub">Il talento non lo scopre nessuno per te.</p>
+        <p class="hero-sub">Ti facciamo fare esperienze in cui capirai da sol*, sul campo, cosa ti accende davvero.</p>
+        <a href="#form" class="btn">Voglio saperne di più <span class="btn-arrow">→</span></a>
+      </div>
+      <div class="hero-image">
+        <img src="skillherz-studenti-hero.jpg" alt="Il potenziale diventa visibile — collage Skillherz">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 2 - RICONOSCERTI -->
+<section class="section" id="riconoscerti">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Riconoscerti</div>
+      <h2>Ti suona <span class="grad-text">familiare?</span></h2>
+      <p>Se anche solo una di queste frasi ti gira in testa ogni tanto, sei nel posto giusto.</p>
+    </div>
+
+    <div class="quotes-grid">
+      <div class="quote-item">Tutti mi chiedono di scegliere. Io non so nemmeno da dove partire.</div>
+      <div class="quote-item">Ho fatto un test online. Mi ha dato un lavoro. E adesso?</div>
+      <div class="quote-item">So quello che dovrei fare. Non so quello che voglio fare.</div>
+      <div class="quote-item">Mi piacciono troppe cose. O forse nessuna davvero.</div>
+    </div>
+
+    <p class="quote-closing">Non sei confuso. Ti manca il metodo per orientarti in questo mare di possibilità. <em>È diverso — ed è normale.</em></p>
+  </div>
+</section>
+
+<!-- SEZIONE 3 - L'ESPERIENZA (full-bleed gradient) -->
+<section class="esperienza-section" id="esperienza">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">L'esperienza</div>
+      <h2>Non ti diamo risposte.<br><em style="font-style:normal;color:rgba(255,255,255,0.55);">Ti diamo il modo di trovarle.</em></h2>
+    </div>
+
+    <div class="esperienza-video">
+      <span class="esperienza-video-hint">Guarda</span>
+      <video
+        src="esperienza-video.mp4"
+        poster="esperienza-video-poster.jpg"
+        autoplay
+        muted
+        loop
+        playsinline
+        controls
+        preload="metadata"
+      ></video>
+    </div>
+
+    <p class="esperienza-manifesto">Non è quello che diciamo di essere.<br><em>È quello che facciamo, con ragazzi come te.</em></p>
+  </div>
+</section>
+
+<!-- SEZIONE 4 - COME INIZIARE -->
+<section class="section" id="iniziare">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Come iniziare</div>
+      <h2>Scopri come puoi fare <span class="grad-text">un'esperienza con noi.</span></h2>
+      <p>Il protagonista rimani sempre tu, ma all'inizio del percorso deve esserci un adulto che decide di farti iniziare il percorso.</p>
+    </div>
+
+    <div class="binari-grid">
+      <!-- 01 -->
+      <div class="binario">
+        <div class="binario-tags">
+          <span class="binario-tag tag-free">Gratuito</span>
+          <span class="binario-tag">Tramite la classe</span>
+        </div>
+        <div class="binario-num">01</div>
+        <div class="binario-title">FSL o orientamento a scuola</div>
+        <div class="binario-headline">Parlane al tuo prof.</div>
+        <p class="binario-desc">Skillherz lavora già con centinaia di scuole nel Nord Italia. Se la tua ancora non collabora con noi, parlane al tuo docente di riferimento — può proporlo per la tua classe. È il modo più comune per farlo, e non costa nulla né a te né alla tua famiglia.</p>
+        <div class="binario-quote">
+          <span class="binario-quote-label">Cosa dirgli</span>
+          "Ho scoperto che Skillherz fa percorsi di orientamento e settimane di FSL. Possiamo farli con loro?"
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="binario">
+        <div class="binario-tags">
+          <span class="binario-tag tag-private">Servizio privato</span>
+          <span class="binario-tag">Da giugno a settembre</span>
+        </div>
+        <div class="binario-num">02</div>
+        <div class="binario-title">Summer Camp</div>
+        <div class="binario-headline">Un'esperienza di FSL estiva.</div>
+        <p class="binario-desc">Cinque giorni in cui lavori con e per un'azienda reale, in un settore vero. Nessun voto, nessun colloquio. Con altri ragazzi come te vivi un'esperienza che ti fa capire se quel mondo ti riguarda o no.</p>
+        <p class="binario-desc">Attivo in tutte le otto province in cui lavoriamo, al raggiungimento di un numero minimo di interessati a sperimentare il tuo stesso settore.</p>
+        <a href="#form" class="btn btn-outline">Voglio saperne di più <span class="btn-arrow">→</span></a>
+      </div>
+
+      <!-- 03 -->
+      <div class="binario">
+        <div class="binario-tags">
+          <span class="binario-tag tag-private">Servizio privato</span>
+          <span class="binario-tag">Tutto l'anno</span>
+        </div>
+        <div class="binario-num">03</div>
+        <div class="binario-title">Orientamento privato</div>
+        <div class="binario-headline">Otto ore in cinque incontri per imparare come si decide.</div>
+        <p class="binario-desc">Le prime tre tappe (le scelte, le attitudini, il mondo del lavoro), il matching con il piano d'azione, la visita in azienda. Alla fine, un colloquio individuale con un orientatore.</p>
+        <p class="binario-desc">Puoi farlo da solo o in piccolo gruppo con amici o compagni di classe. La formula individuale è più focalizzata su di te; quella di gruppo è più economica e ti fa confrontare con altri.</p>
+        <a href="#form" class="btn btn-outline">Voglio saperne di più <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 5 - NUMERI -->
+<section class="section" id="numeri" style="background:var(--card-bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Numeri</div>
+      <h2>I numeri che <span class="grad-text">ci rappresentano.</span></h2>
+      <p>Skillherz è oggi la prima infrastruttura educativa privata del Nord Italia sui percorsi di orientamento e scuola-lavoro. Persone reali, aziende reali, otto province.</p>
+    </div>
+
+    <div class="numeri-grid">
+      <div class="numero">
+        <span class="numero-val">30.000+</span>
+        <div class="numero-lbl">Studenti coinvolti ogni anno.</div>
+      </div>
+      <div class="numero">
+        <span class="numero-val">400+</span>
+        <div class="numero-lbl">Scuole partner sul territorio.</div>
+      </div>
+      <div class="numero">
+        <span class="numero-val">8</span>
+        <div class="numero-lbl">Province operative nel Nord Italia.</div>
+      </div>
+      <div class="numero">
+        <span class="numero-val">9,4<span style="font-size:0.5em;">/10</span></span>
+        <div class="numero-lbl">Livello di raccomandazione dei docenti.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 6 - FORM -->
+<section class="cta-section" id="form">
+  <div class="container">
+    <div class="cta-wrap">
+      <div class="cta-copy">
+        <div class="section-label">Ti ricontattiamo noi</div>
+        <h2>Facci sapere <span class="grad-text">che ci sei.</span></h2>
+        <p>Lascia i tuoi dati e ti ricontattiamo per capire insieme che strada ha senso per te — Summer Camp, orientamento privato, o parlarne alla tua scuola. Nessun impegno.</p>
+      </div>
+
+      <form class="form" id="studentForm" data-campagna="studenti">
+        <div class="lf-hp" aria-hidden="true"><label>Sito web <input type="text" name="sito_web" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form-row">
+          <div class="form-field"><label>Nome <span class="req">*</span></label><input type="text" name="nome" required></div>
+          <div class="form-field"><label>Cognome <span class="req">*</span></label><input type="text" name="cognome" required></div>
+        </div>
+        <div class="form-field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="form-field"><label>Città <span class="req">*</span></label><input type="text" name="citta" required></div>
+        <div class="form-field">
+          <label>Cosa ti interessa <span class="req">*</span></label>
+          <select name="interesse" required>
+            <option value="">Seleziona</option>
+            <option>FSL/orientamento a scuola</option>
+            <option>Summer Camp</option>
+            <option>Orientamento privato</option>
+            <option>Non lo so ancora, ne parliamo</option>
+          </select>
+        </div>
+
+        <fieldset class="lf-eta">
+          <legend>Quanti anni hai? <span class="req">*</span></legend>
+          <div class="lf-eta-scelte">
+            <label><input type="radio" name="maggiore14" value="si" required> <span>14 anni o più</span></label>
+            <label><input type="radio" name="maggiore14" value="no" required> <span>Meno di 14 anni</span></label>
+          </div>
+        </fieldset>
+
+        <div class="form-field hidden" id="parentField">
+          <label>Email di un genitore o tutore <span class="req">*</span></label>
+          <input type="email" name="emailGenitore">
+          <p class="form-info" style="text-align:left;margin-top:8px;">Per legge, sotto i 14 anni ci serve anche il consenso di chi si occupa di te. Gli scriviamo noi: appena conferma, ti ricontattiamo.</p>
+        </div>
+
+        <label class="privacy">
+          <input type="checkbox" name="consenso_privacy" value="si" required>
+          <span>Ho letto e accetto la <a href="https://drive.google.com/file/d/1ddiqTdhsasQHSFa_Yf_Ip6Yz_eoWQHNr/view" target="_blank" rel="noopener">privacy & cookie policy</a>. <span class="req">*</span></span>
+        </label>
+        <label class="privacy" id="marketingField">
+          <input type="checkbox" name="consenso_marketing" value="si">
+          <span>Voglio ricevere aggiornamenti su Summer Camp, eventi e iniziative Skillherz. <span class="lf-opz">(facoltativo)</span></span>
+        </label>
+
+        <button type="submit" class="btn">Voglio essere ricontattato <span class="btn-arrow">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 7 - CHIUSURA / EXIT -->
+<section class="exit-section">
+  <div class="container">
+    <div class="exit-callout">
+      <h3>Non vuoi essere ricontattato?</h3>
+      <p>Visita il nostro sito per vedere le esperienze vissute dagli altri studenti in questi anni.</p>
+      <a href="https://skillherz.com/studenti/" target="_blank" rel="noopener">Vai alla pagina studenti <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="https://skillherz.com/" class="logo" target="_blank" rel="noopener"><img src="skillherz-logo-white.png" alt="Skillherz"></a>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/skillherz/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.852 3.37-1.852 3.601 0 4.267 2.37 4.267 5.455v6.288zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/skillherz_official/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/people/Skillherz/61586932675489/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@Skillherz" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Naviga</h4>
+        <a href="https://skillherz.com/studenti/" target="_blank" rel="noopener">Studenti</a>
+        <a href="https://skillherz.com/chi-siamo/" target="_blank" rel="noopener">Chi siamo</a>
+        <a href="https://skillherz.com/contattaci/" target="_blank" rel="noopener">Contatti</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://drive.google.com/file/d/1ddiqTdhsasQHSFa_Yf_Ip6Yz_eoWQHNr/view" target="_blank" rel="noopener">Privacy & cookie policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Gruppo Edoomark</div>
+      <div>www.skillherz.com</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Email del genitore solo per chi ha meno di 14 anni. A loro non si chiede
+   il consenso marketing: un minore non puo' darlo da solo. */
+(function () {
+  var form = document.getElementById('studentForm');
+  if (!form) return;
+  var parentField = document.getElementById('parentField');
+  var parentInput = parentField.querySelector('input');
+  var marketing = document.getElementById('marketingField');
+  function aggiorna() {
+    var scelta = form.querySelector('input[name="maggiore14"]:checked');
+    var minore = !!scelta && scelta.value === 'no';
+    parentField.classList.toggle('hidden', !minore);
+    if (minore) parentInput.setAttribute('required', 'required');
+    else { parentInput.removeAttribute('required'); parentInput.value = ''; }
+    marketing.style.display = minore ? 'none' : '';
+    if (minore) marketing.querySelector('input').checked = false;
+  }
+  form.addEventListener('change', function (e) { if (e.target.name === 'maggiore14') aggiorna(); });
+  aggiorna();
+})();
+</script>
+
+<script>
+/* ============================================================
+   Collegamento del form al backend Campagne (Apps Script).
+   ENDPOINT: l'URL /exec del backend, da impostare dopo la pubblicazione.
+   ============================================================ */
+(function () {
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbym7qTKVoAFjf6PZ38kZm0zhERBM_L9GYnBl1MWKEq_E77llbb2uXzuylr_Oh173ErK/exec';
+  var form = document.querySelector('form[data-campagna]');
+  if (!form) return;
+  var apertura = Date.now();
+
+  function param(nome) {
+    try { return new URLSearchParams(location.search).get(nome) || ''; } catch (e) { return ''; }
+  }
+  function escape(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function errore(testo) {
+    var box = form.querySelector('.lf-msg');
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'lf-msg errore';
+      box.setAttribute('role', 'alert');
+      var btn = form.querySelector('button[type="submit"]');
+      btn.parentNode.insertBefore(box, btn);
+    }
+    box.textContent = testo;
+  }
+  function grazie(titolo, testo) {
+    form.innerHTML =
+      '<div class="lf-grazie" role="status">' +
+        '<div class="lf-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>' +
+        '<h3>' + escape(titolo) + '</h3><p>' + escape(testo) + '</p>' +
+      '</div>';
+    form.scrollIntoView({behavior: 'smooth', block: 'center'});
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!ENDPOINT) { errore('Il modulo non è ancora attivo. Riprova tra poco.'); return; }
+
+    var dati = {};
+    new FormData(form).forEach(function (v, k) { dati[k] = String(v); });
+    var spunta = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? (el.checked ? 'si' : 'no') : ''; };
+    dati.consenso_privacy = spunta('consenso_privacy');
+    dati.consenso_marketing = spunta('consenso_marketing');
+    var eta = form.querySelector('[name="maggiore14"]:checked');
+    if (form.querySelector('[name="maggiore14"]')) dati.maggiore14 = eta ? eta.value : '';
+    dati.campagna = form.getAttribute('data-campagna');
+    dati.pagina = location.origin + location.pathname;
+    dati.utm_source = param('utm_source');
+    dati.utm_medium = param('utm_medium');
+    dati.utm_campaign = param('utm_campaign');
+    dati.secondi = Math.round((Date.now() - apertura) / 1000);
+
+    var btn = form.querySelector('button[type="submit"]');
+    var etichetta = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Invio in corso…';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},   /* niente preflight CORS verso Apps Script */
+      body: JSON.stringify(dati)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r || !r.ok) throw new Error((r && r.error) || '');
+        grazie(r.titolo || 'Grazie!', r.messaggio || 'Abbiamo ricevuto la tua richiesta.');
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        btn.innerHTML = etichetta;
+        errore((err && err.message) || 'Non siamo riusciti a inviare la richiesta. Riprova tra poco.');
+      });
+  });
+})();
+</script>
+
+</body>
+</html>

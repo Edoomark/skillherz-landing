@@ -3,11 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Consenso cookie: prima di GTM, tutto negato finché l'utente non sceglie -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+  analytics_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted',
+  wait_for_update: 500
+});
+/* scelta già fatta in una visita precedente */
+(function () {
+  try {
+    var v = JSON.parse(localStorage.getItem('skz-cookie') || 'null');
+    if (v && v.scade > Date.now() && v.stato === 'accettato') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted', ad_user_data: 'granted',
+        ad_personalization: 'granted', analytics_storage: 'granted'
+      });
+    }
+  } catch (e) {}
+})();
+</script>
+
+<!-- Google Tag Manager: caricato SOLO dopo l'accettazione dei cookie -->
+<script>
+window.skzCaricaGTM = function () {
+  if (window.skzGtmCaricato) return;
+  window.skzGtmCaricato = true;
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var f = d.getElementsByTagName(s)[0], j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-5T6C2MVS');
+};
+</script>
+<!-- End Google Tag Manager -->
 <title>Noi lo vediamo — Skillherz</title>
+<meta name="description" content="Landing page campagna Skillherz per studenti.">
+
 <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/favicon-192x192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Landing page campagna Skillherz per studenti.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -949,6 +989,129 @@ footer{background:#0f0f1e;color:rgba(255,255,255,0.7);padding:56px 0 32px;}
         errore((err && err.message) || 'Non siamo riusciti a inviare la richiesta. Riprova tra poco.');
       });
   });
+})();
+</script>
+
+<!-- Banner cookie -->
+<style>
+  .skz-ck{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:660px;margin:0 auto;
+    background:#fff;border:1.5px solid #E5E7EB;border-radius:16px;box-shadow:0 12px 48px rgba(59,91,219,.18);
+    padding:20px 22px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#1a1a2e;
+    transform:translateY(12px);opacity:0;transition:opacity .25s,transform .25s;}
+  .skz-ck.aperto{transform:none;opacity:1;}
+  .skz-ck h2{font-size:15px;font-weight:800;margin:0 0 8px;letter-spacing:-.2px;}
+  .skz-ck p{font-size:13.5px;line-height:1.55;color:#4B5563;margin:0 0 16px;}
+  .skz-ck a{color:#7B3FC4;text-decoration:underline;}
+  .skz-ck-btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .skz-ck button{font-family:inherit;font-size:13.5px;font-weight:700;padding:11px 22px;border-radius:10px;
+    cursor:pointer;border:1.5px solid #E5E7EB;background:#fff;color:#1a1a2e;transition:all .15s;flex:1 1 auto;}
+  .skz-ck button:hover{border-color:#7B3FC4;color:#7B3FC4;}
+  .skz-ck button.skz-si{background:linear-gradient(135deg,#3B5BDB 0%,#7B3FC4 50%,#E040A0 100%);
+    color:#fff;border-color:transparent;}
+  .skz-ck button.skz-si:hover{color:#fff;filter:brightness(1.06);}
+  .skz-ck-link{background:none;border:none;color:#9CA3AF;font-size:12px;text-decoration:underline;cursor:pointer;
+    font-family:inherit;padding:6px 0;display:block;}
+  @media(max-width:560px){.skz-ck{padding:18px;} .skz-ck button{flex:1 1 100%;}}
+</style>
+<script>
+(function () {
+  var CHIAVE = 'skz-cookie';
+  var MESI6 = 182 * 24 * 60 * 60 * 1000;
+  var PRIVACY = 'https://drive.google.com/file/d/1ddiqTdhsasQHSFa_Yf_Ip6Yz_eoWQHNr/view';
+
+  function letto() {
+    try {
+      var v = JSON.parse(localStorage.getItem(CHIAVE) || 'null');
+      return (v && v.scade > Date.now()) ? v : null;
+    } catch (e) { return null; }
+  }
+
+  function scrivi(stato) {
+    try { localStorage.setItem(CHIAVE, JSON.stringify({stato: stato, scade: Date.now() + MESI6})); } catch (e) {}
+  }
+
+  /* Chi ritira il consenso non deve restare con i cookie scritti prima:
+     si cancellano provando i domini su cui Google li scrive. */
+  function pulisciCookie() {
+    var prefissi = ['_ga', '_gid', '_gcl', '_dc_gtm', '_gat'];
+    var host = location.hostname.split('.');
+    var domini = [''];
+    for (var i = 0; i < host.length - 1; i++) domini.push('; domain=.' + host.slice(i).join('.'));
+    document.cookie.split(';').forEach(function (c) {
+      var nome = c.split('=')[0].trim();
+      if (!nome) return;
+      var suo = prefissi.some(function (p) { return nome.indexOf(p) === 0; });
+      if (!suo) return;
+      domini.forEach(function (d) {
+        document.cookie = nome + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
+      });
+    });
+  }
+
+  function applica(stato) {
+    var concesso = stato === 'accettato' ? 'granted' : 'denied';
+    /* GTM parte solo con il consenso: senza accettazione non viene nemmeno scaricato */
+    if (stato === 'accettato' && typeof window.skzCaricaGTM === 'function') window.skzCaricaGTM();
+    if (stato !== 'accettato') pulisciCookie();
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        ad_storage: concesso, ad_user_data: concesso,
+        ad_personalization: concesso, analytics_storage: concesso
+      });
+    }
+    (window.dataLayer = window.dataLayer || []).push({event: 'consenso_cookie', consenso_cookie: stato});
+  }
+
+  var box;
+  function mostra() {
+    if (box) { box.classList.add('aperto'); return; }
+    box = document.createElement('div');
+    box.className = 'skz-ck';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', 'Preferenze cookie');
+    box.innerHTML =
+      '<h2>Cookie</h2>' +
+      '<p>Usiamo cookie tecnici, necessari al funzionamento del sito, e — solo con il tuo consenso — ' +
+      'cookie di analisi e marketing per capire come vengono usate queste pagine. ' +
+      'Puoi accettarli o rifiutarli: nel secondo caso la pagina funziona lo stesso. ' +
+      'Dettagli nella <a href="' + PRIVACY + '" target="_blank" rel="noopener">privacy &amp; cookie policy</a>.</p>' +
+      '<div class="skz-ck-btns">' +
+        '<button type="button" class="skz-no">Rifiuta</button>' +
+        '<button type="button" class="skz-si">Accetta</button>' +
+      '</div>';
+    document.body.appendChild(box);
+    box.querySelector('.skz-si').addEventListener('click', function () { scegli('accettato'); });
+    box.querySelector('.skz-no').addEventListener('click', function () { scegli('rifiutato'); });
+    setTimeout(function () { box.classList.add('aperto'); }, 30);   /* non requestAnimationFrame: in una scheda in secondo piano non partirebbe */
+  }
+
+  function scegli(stato) {
+    scrivi(stato);
+    applica(stato);
+    if (box) box.classList.remove('aperto');
+  }
+
+  /* link per cambiare idea, nella colonna Legal del piede */
+  function linkPiede() {
+    var col = document.querySelectorAll('.footer-col');
+    var legal = null;
+    for (var i = 0; i < col.length; i++) {
+      var t = col[i].querySelector('h4');
+      if (t && /legal/i.test(t.textContent)) legal = col[i];
+    }
+    if (!legal) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'skz-ck-link';
+    b.textContent = 'Preferenze cookie';
+    b.addEventListener('click', mostra);
+    legal.appendChild(b);
+  }
+
+  var scelta = letto();
+  if (scelta) applica(scelta.stato); else mostra();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', linkPiede);
+  else linkPiede();
 })();
 </script>
 

@@ -1172,6 +1172,35 @@ footer{background:#0f0f1e;color:rgba(255,255,255,0.7);padding:56px 0 32px;}
     btn.disabled = true;
     btn.textContent = 'Invio in corso…';
 
+    /* Convivenza CRM: seconda POST fire-and-forget verso il nuovo backend.
+       keepalive sopravvive al "Grazie!" che naviga via dalla pagina.
+       Nessun fallback UX: la risposta mostrata all'utente resta quella
+       dell'Apps Script sotto. Vedi docs/riferimento/convivenza-landing.md
+       del repo skillherz-crm. */
+    try {
+      var datiCRM = Object.assign({}, dati, {
+        consenso_versione: 'v1-orientamento-20261117'
+      });
+      fetch('https://skillherz-crm.sviluppo-4bd.workers.dev/v1/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+          'X-CRM-Key': 'pub_test_aHDnHM1xGyTJQ2f4trAe3HHsKb6WDjQ1'
+        },
+        body: JSON.stringify(datiCRM),
+        keepalive: true,
+        credentials: 'omit',
+        mode: 'cors'
+      })
+        .then(function (r) { return r.json().catch(function () { return null; }); })
+        .then(function (j) {
+          if (!j || j.ok !== true) console.warn('[crm] risposta inattesa', j);
+        })
+        .catch(function (e) { console.warn('[crm] rete non disponibile', e); });
+    } catch (e) {
+      console.warn('[crm] errore invio', e);
+    }
+
     fetch(ENDPOINT, {
       method: 'POST',
       headers: {'Content-Type': 'text/plain;charset=utf-8'},   /* niente preflight CORS verso Apps Script */
